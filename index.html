@@ -30,6 +30,21 @@ nav.stuck{border-color:var(--border)}
 .hero::before{content:"";position:absolute;top:-20%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(232,197,71,0.05) 0%,transparent 70%);pointer-events:none}
 .hero::after{content:"";position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--border)}
 
+#intro-overlay{position:fixed;inset:0;z-index:999;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;transition:transform 1s cubic-bezier(.76,0,.24,1),opacity .8s ease .1s}
+#intro-overlay.hide{transform:translateY(-100%);opacity:0;pointer-events:none}
+#intro-overlay .intro-name{font-family:"Playfair Display",serif;font-size:2.6rem;font-weight:700;color:var(--text);letter-spacing:-.01em;opacity:0;animation:introFade .9s .15s forwards}
+#intro-overlay .intro-role{font-size:0.72rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);opacity:0;animation:introFade .9s .4s forwards}
+#intro-overlay .intro-bar{width:0;height:2px;background:var(--accent);animation:introBar 1s .5s forwards}
+@keyframes introFade{to{opacity:1}}
+@keyframes introBar{to{width:64px}}
+
+.hero-glow{position:absolute;border-radius:50%;filter:blur(110px);pointer-events:none;z-index:0}
+.hero-glow-1{width:480px;height:480px;background:rgba(232,197,71,0.14);top:-12%;right:-6%;animation:glowMove1 13s ease-in-out infinite}
+.hero-glow-2{width:420px;height:420px;background:rgba(78,205,196,0.11);bottom:-14%;left:-8%;animation:glowMove2 15s ease-in-out infinite}
+@keyframes glowMove1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-50px,40px) scale(1.08)}}
+@keyframes glowMove2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(45px,-35px) scale(1.1)}}
+.hero-spotlight{position:absolute;inset:0;pointer-events:none;z-index:0;background:radial-gradient(500px circle at var(--mx,50%) var(--my,30%),rgba(232,197,71,0.07),transparent 45%);transition:background .1s ease}
+
 .hero-left{z-index:1}
 .hero-badge{display:inline-flex;align-items:center;gap:10px;padding:6px 16px;background:var(--accent3);border:1px solid rgba(232,197,71,0.2);margin-bottom:36px;opacity:0;animation:fadeUp .7s .1s forwards}
 .hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
@@ -203,6 +218,11 @@ footer p{font-size:0.75rem;color:var(--text3);letter-spacing:.06em}
 </style>
 </head>
 <body>
+<div id="intro-overlay">
+  <div class="intro-name">Kiran V</div>
+  <div class="intro-bar"></div>
+  <div class="intro-role">Full Stack · AI Engineer</div>
+</div>
 
 <nav id="nav">
   <a href="#" class="nav-brand">Kiran<span>.</span></a>
@@ -218,10 +238,13 @@ footer p{font-size:0.75rem;color:var(--text3);letter-spacing:.06em}
 </nav>
 
 <section class="hero" id="hero">
+  <div class="hero-glow hero-glow-1"></div>
+  <div class="hero-glow hero-glow-2"></div>
+  <div class="hero-spotlight" id="hero-spotlight"></div>
   <div class="hero-left">
     <div class="hero-badge"><span class="hero-badge-dot"></span><span>Available for new opportunities</span></div>
-    <h1 class="hero-name"><span class="line1">Software</span><span class="line2">Engineer.</span></h1>
-    <p class="hero-desc">Building <strong>production-grade enterprise software</strong> using Java, SQL, and modern full-stack technologies. Focused on <strong>secure backend systems, database-driven applications, production debugging, and scalable web platforms</strong>. Recently at <strong>Advarra</strong> — shipping Java-based features for regulated clinical platforms.</p>
+    <h1 class="hero-name"><span class="line1">Full Stack</span><span class="line2">AI Engineer.</span></h1>
+    <p class="hero-desc">I build <strong>full-stack web applications</strong> and <strong>AI agents powered by LLMs and ML</strong> — from production-grade backend systems to generative AI tooling. Focused on <strong>full-stack development, agentic AI, RAG, and applied machine learning</strong>. Recently at <strong>Advarra</strong> — shipping both full-stack features and LLM-powered tooling for regulated clinical platforms.</p>
     <div class="hero-actions">
       <a href="#projects" class="btn-primary">View My Work</a>
       <a href="https://linkedin.com/in/kiranse" target="_blank" class="btn-ghost">LinkedIn</a>
@@ -234,7 +257,7 @@ footer p{font-size:0.75rem;color:var(--text3);letter-spacing:.06em}
       <div class="hero-photo-overlay"></div>
       <div class="hero-photo-tag">
         <div class="hero-photo-name">Kiran V</div>
-        <div class="hero-photo-role">Java · Full-Stack · Bengaluru</div>
+        <div class="hero-photo-role">Full Stack · AI/ML · Bengaluru</div>
       </div>
       <div class="hero-photo-corner">Open to Work</div>
     </div>
@@ -243,9 +266,9 @@ footer p{font-size:0.75rem;color:var(--text3);letter-spacing:.06em}
 
 <div class="stats">
   <div class="stat fade"><div class="stat-num"><span class="count" data-n="150">0</span><sup>+</sup></div><div class="stat-label">Production issues resolved across 6 release cycles</div></div>
-  <div class="stat fade d1"><div class="stat-num"><span class="count" data-n="4">0</span><sup>+</sup></div><div class="stat-label">Security vulnerability classes remediated</div></div>
-  <div class="stat fade d2"><div class="stat-num"><span class="count" data-n="40">0</span><sup>%</sup></div><div class="stat-label">Page load reduction via CSS refactor at Advarra</div></div>
-  <div class="stat fade d3"><div class="stat-num"><span class="count" data-n="100">0</span><sup>k+</sup></div><div class="stat-label">Patient records protected through secure engineering</div></div>
+  <div class="stat fade d1"><div class="stat-num"><span class="count" data-n="150">0</span><sup>+</sup></div><div class="stat-label">Engineers using Halo, an LLM-powered tool I built</div></div>
+  <div class="stat fade d2"><div class="stat-num"><span class="count" data-n="40">0</span><sup>%</sup></div><div class="stat-label">Page load reduction via full-stack performance work</div></div>
+  <div class="stat fade d3"><div class="stat-num"><span class="count" data-n="4">0</span><sup>+</sup></div><div class="stat-label">Production-ready AI applications shipped independently</div></div>
 </div>
 
 <section class="section" id="about">
@@ -254,10 +277,10 @@ footer p{font-size:0.75rem;color:var(--text3);letter-spacing:.06em}
     <h2 class="sec-title fade d1">Who I <em>am</em></h2>
     <div class="about-grid">
       <div class="about-text fade d1">
-        <p>I'm a <strong>Software Engineer with 1.4 years of production experience</strong> building enterprise-grade healthcare software using Java, SQL, JavaScript, and modern web technologies. My work focuses on backend development, application security, database optimization, production support, and full-stack feature delivery.</p>
-        <p>At <strong>Advarra</strong>, I contributed to a large-scale Clinical Trial Management System used by over 1,000 research sites globally. I resolved production defects, implemented security fixes, optimized database workflows, and delivered enhancements across multiple release cycles while working in FDA and HIPAA-regulated environments.</p>
-        <p>Outside work, I build practical developer-focused applications including a <strong>Java-based National Identification Management System</strong>, a <strong>full-stack file conversion platform</strong>, a <strong>financial portfolio optimizer API</strong>, and real-time analytics dashboards. I care about clean code, strong fundamentals, secure design, and reliable software delivery.</p>
-        <div class="about-quote"><p>"Reliable software is built through strong engineering fundamentals, secure design, and attention to detail."</p></div>
+        <p>I'm a <strong>Software Engineer with 1.3 years of production experience</strong> building AI-powered applications and enterprise-grade software using LLMs, RAG, Python, SQL, and modern full-stack technologies. My work focuses on generative AI engineering, LLM orchestration, prompt engineering, and full-stack feature delivery.</p>
+        <p>At <strong>Advarra</strong>, I architected and shipped <strong>Halo</strong>, an LLM-powered sprint management tool adopted by 150+ engineers company-wide, while contributing to a large-scale Clinical Trial Management System used by over 1,000 research sites globally — resolving production defects, implementing security fixes, and delivering enhancements in FDA and HIPAA-regulated environments.</p>
+        <p>Outside work, I build practical AI-driven applications including a <strong>multi-agent FNOL claims processor</strong> using LLaMA 3.1 and Groq, an <strong>async transcription API with MCP support</strong>, a <strong>financial portfolio optimizer</strong>, and a full-stack file conversion platform. I care about clean code, strong fundamentals, secure design, and reliable AI system delivery.</p>
+        <div class="about-quote"><p>"Reliable AI systems are built through strong engineering fundamentals, thoughtful design, and attention to detail."</p></div>
       </div>
       <div class="fade d2">
         <div class="about-card">
@@ -270,7 +293,7 @@ footer p{font-size:0.75rem;color:var(--text3);letter-spacing:.06em}
             <a href="https://github.com/KiranLoak" target="_blank" class="about-link">GitHub — KiranLoak <span>↗</span></a>
             <a href="https://linkedin.com/in/kiranse" target="_blank" class="about-link">LinkedIn — kiranse <span>↗</span></a>
             <a href="https://wa.me/916362929120" target="_blank" class="about-link">WhatsApp <span>↗</span></a>
-            <a href="#" class="about-link" style="color:var(--accent)">Bengaluru · Remote Open <span>↗</span></a>
+            <a href="#" class="about-link" style="color:var(--accent)">Bengaluru · Remote/Hybrid/Onsite <span>↗</span></a>
           </div>
         </div>
       </div>
@@ -283,14 +306,12 @@ footer p{font-size:0.75rem;color:var(--text3);letter-spacing:.06em}
     <div class="sec-eyebrow fade"><span class="sec-eyebrow-line"></span><span>02 · Skills</span></div>
     <h2 class="sec-title fade d1">Technical <em>expertise</em></h2>
     <div class="skills-container">
-      <div class="skill-group fade"><span class="skill-group-label">Languages</span><div class="skill-chips"><span class="chip new">Java</span><span class="chip">SQL</span><span class="chip">JavaScript</span><span class="chip">TypeScript</span><span class="chip">Python</span></div></div>
-      <div class="skill-group fade d1"><span class="skill-group-label">Backend &amp; APIs</span><div class="skill-chips"><span class="chip new">Spring Boot</span><span class="chip new">Java EE</span><span class="chip new">JDBC</span><span class="chip">REST APIs</span><span class="chip">Microservices</span><span class="chip">Node.js</span><span class="chip">Authentication</span><span class="chip">Secure Coding</span></div></div>
-      <div class="skill-group fade d2"><span class="skill-group-label">Frontend</span><div class="skill-chips"><span class="chip">React.js</span><span class="chip">Redux</span><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">Bootstrap</span><span class="chip">jQuery</span><span class="chip">Vite</span></div></div>
-      <div class="skill-group fade d2"><span class="skill-group-label">Databases</span><div class="skill-chips"><span class="chip new">MySQL</span><span class="chip">PostgreSQL</span><span class="chip">SQL Optimization</span><span class="chip">Query Tuning</span><span class="chip">Indexing</span><span class="chip">Data Validation</span></div></div>
-      <div class="skill-group fade d3"><span class="skill-group-label">Security</span><div class="skill-chips"><span class="chip new">SQL Injection Prevention</span><span class="chip">SSRF Mitigation</span><span class="chip">XXE Prevention</span><span class="chip">Regex DoS Fixes</span><span class="chip">OWASP Fundamentals</span><span class="chip">Security Remediation</span></div></div>
-      <div class="skill-group fade d3"><span class="skill-group-label">Cloud &amp; Tools</span><div class="skill-chips"><span class="chip">AWS EC2</span><span class="chip">AWS S3</span><span class="chip">AWS RDS</span><span class="chip">Docker</span><span class="chip">Git · GitHub</span><span class="chip">Jira · Confluence</span><span class="chip">Linux</span><span class="chip">Maven</span></div></div>
+      <div class="skill-group fade"><span class="skill-group-label">Generative AI</span><div class="skill-chips"><span class="chip new">LangChain</span><span class="chip new">RAG</span><span class="chip new">Agentic AI</span><span class="chip new">LLMs</span><span class="chip new">Prompt Engineering</span><span class="chip">NLP</span><span class="chip">Groq API</span></div></div>
+      <div class="skill-group fade d1"><span class="skill-group-label">ML &amp; Data</span><div class="skill-chips"><span class="chip new">Machine Learning</span><span class="chip new">Scikit-Learn</span><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">Data Science</span><span class="chip">SQL</span><span class="chip">Vector Databases</span></div></div>
+      <div class="skill-group fade d2"><span class="skill-group-label">Backend</span><div class="skill-chips"><span class="chip">Python</span><span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">Node.js</span><span class="chip">FastAPI</span><span class="chip">Flask</span><span class="chip">REST APIs</span><span class="chip">Microservices</span></div></div>
+      <div class="skill-group fade d2"><span class="skill-group-label">Frontend</span><div class="skill-chips"><span class="chip">React.js</span><span class="chip">JavaScript</span><span class="chip">TypeScript</span><span class="chip">HTML/CSS</span></div></div>
+      <div class="skill-group fade d3"><span class="skill-group-label">Infra &amp; Cloud</span><div class="skill-chips"><span class="chip">Docker</span><span class="chip">AWS</span><span class="chip">GitHub Actions</span><span class="chip">CI/CD</span><span class="chip">Git</span><span class="chip">Linux</span><span class="chip">JIRA</span></div></div>
     </div>
-    <p style="font-size:0.72rem;letter-spacing:.1em;color:var(--teal);margin-top:24px;text-transform:uppercase"><span style="width:20px;height:1px;background:var(--teal);display:inline-block;vertical-align:middle;margin-right:10px"></span>Teal = strongest Java/backend focus areas</p>
   </div>
 </section>
 
@@ -301,19 +322,19 @@ footer p{font-size:0.75rem;color:var(--text3);letter-spacing:.06em}
     <div class="exp-entry fade">
       <div class="exp-header"><h3 class="exp-role">Software Engineer I</h3><span class="exp-period">Mar 2025 — May 2026</span></div>
       <p class="exp-company">Advarra — Enterprise Clinical Trial Management Platform</p>
-      <span class="exp-badge">Java · Backend · Security · Production Engineering</span>
+      <span class="exp-badge">Generative AI · LLM Engineering · Full-Stack Development</span>
       <ul class="exp-list">
-        <li>Resolved <strong>150+ production issues</strong>, defects, and enhancement requests across 6 release cycles, improving platform stability for <strong>1,000+ research sites</strong>.</li>
-        <li>Remediated <strong>SQL Injection, SSRF, XXE, and Regex DoS</strong> vulnerabilities across enterprise CTMS modules handling sensitive clinical-trial workflows.</li>
-        <li>Investigated complex database consistency issues by reproducing workflows locally, validating records directly in SQL tables, and confirming fixes across test environments.</li>
-        <li>Implemented Java/JSP, SQL, and JavaScript fixes across Reviews, Subjects, Protocols, Specimen Management, and reporting modules.</li>
-        <li>Improved frontend performance by <strong>40%</strong> by removing a legacy JavaScript dependency and replacing it with a cleaner native CSS approach.</li>
-        <li>Built business validations and workflow corrections for clinical review screens, including date validation, duplicate identifier checks, and character-counter behavior fixes.</li>
-        <li>Collaborated with QA, product owners, and senior engineers through Agile sprints, code reviews, developer testing, release validation, and technical documentation.</li>
+        <li>Architected and launched <strong>Halo</strong>, an LLM-powered internal sprint management tool adopted by all <strong>150+ engineers and contractors</strong>, integrating directly with JIRA to deliver automated, real-time sprint health dashboards — saving <strong>5+ hours</strong> of manual reporting per team per sprint.</li>
+        <li>Leveraged <strong>prompt engineering and RAG</strong> (Retrieval-Augmented Generation) patterns to prototype AI-assisted developer tooling, gaining hands-on production experience with <strong>vector databases, LLM orchestration</strong>, and intelligent automation at enterprise scale.</li>
+        <li>Developed and maintained <strong>SQL-based data pipelines and Pandas-powered reporting workflows</strong>, delivering operational and product analytics to 3+ internal stakeholder teams on a bi-weekly cadence.</li>
+        <li>Resolved <strong>150+ production issues</strong>, defects, and enhancement requests across 6 release cycles, improving platform stability for <strong>1,000+ research sites</strong> while sustaining a sub-2% regression rate.</li>
+        <li>Remediated <strong>SQL Injection, SSRF, XXE, and Regex DoS</strong> vulnerabilities across enterprise CTMS modules, protecting 100,000+ patient records and maintaining FDA 21 CFR Part 11 and HIPAA compliance.</li>
+        <li>Restructured SQL queries using strategic multi-column indexing across datasets exceeding <strong>1M records</strong>, reducing average query execution time by ~30%.</li>
+        <li>Collaborated within a 12-person Agile team — participating in sprint planning, peer code reviews, and iterative product delivery — consistently meeting two-week sprint commitments across 6 release cycles.</li>
       </ul>
       <div class="exp-halo">
-        <div class="exp-halo-label">⟡ Enterprise Engineering Focus</div>
-        <p>Hands-on experience across Java-based enterprise modules, SQL-backed workflows, security remediation, production troubleshooting, and regulated healthcare software delivery.</p>
+        <div class="exp-halo-label">⟡ AI/ML Engineering Focus</div>
+        <p>Hands-on experience building and shipping LLM-powered tools, applying prompt engineering and RAG patterns, and working with vector databases and data pipelines — alongside production-grade full-stack and security engineering in a regulated healthcare environment.</p>
       </div>
     </div>
   </div>
@@ -398,7 +419,7 @@ footer p{font-size:0.75rem;color:var(--text3);letter-spacing:.06em}
       <div class="edu-main">
         <h3 class="edu-degree">B.E. Computer Science &amp; Engineering</h3>
         <p class="edu-inst">New Horizon College of Engineering, Bengaluru</p>
-        <span class="edu-span">2021 – 2025 · Full Time · Information Technology</span>
+        <span class="edu-span">2021 – 2025 · Full Time · Computer Science and Engineering</span>
       </div>
       <div class="edu-side"><div class="edu-year">2025</div></div>
     </div>
@@ -412,7 +433,7 @@ footer p{font-size:0.75rem;color:var(--text3);letter-spacing:.06em}
     <div class="contact-grid">
       <div class="fade d1">
         <p class="contact-big"><a href="mailto:kirannhce@gmail.com">kirannhce<br>@gmail.com</a></p>
-        <p class="contact-note">Open to Java Software Engineer, Backend Developer, and Full-Stack Developer roles. Immediate joiner — based in Bengaluru, open to remote.</p>
+        <p class="contact-note">Open to AI/ML Engineer, Generative AI Engineer, and Full-Stack Developer roles. Immediate joiner — based in Bengaluru, open to remote.</p>
         <div class="contact-links">
           <a href="mailto:kirannhce@gmail.com" class="clink">kirannhce@gmail.com <span class="clink-icon">Email ↗</span></a>
           <a href="https://github.com/KiranLoak" target="_blank" class="clink">github.com/KiranLoak <span class="clink-icon">GitHub ↗</span></a>
@@ -424,12 +445,12 @@ footer p{font-size:0.75rem;color:var(--text3);letter-spacing:.06em}
         <div class="status-card">
           <div class="status-text"><span class="status-dot"></span>Available now</div>
           <div class="status-headline">Immediate Joiner</div>
-          <div class="status-detail">1.4 years production experience · Bengaluru-based · Open to remote<br><br>Expected CTC: ₹8,00,000 · Targeting: Java, Backend, and Full-stack developer roles</div>
+          <div class="status-detail">1.3 years production experience · Bengaluru-based · Open to remote<br><br>Expected CTC: ₹8,00,000 · Targeting: AI/ML Engineer, GenAI Engineer, and Full-stack developer roles</div>
         </div>
         <div class="quick-card">
           <div class="quick-label">Quick profile</div>
           <div class="quick-item">🎓 B.E. CSE — NHCE Bengaluru, 2025</div>
-          <div class="quick-item">💼 Software Engineer I — Advarra (1.4 yrs)</div>
+          <div class="quick-item">💼 Software Engineer I — Advarra (1.3 yrs)</div>
           <div class="quick-item">📍 Bengaluru · Open to remote</div>
           <div class="quick-item">🌐 English · Kannada · Telugu · Hindi</div>
         </div>
@@ -444,6 +465,21 @@ footer p{font-size:0.75rem;color:var(--text3);letter-spacing:.06em}
 </footer>
 
 <script>
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    document.getElementById("intro-overlay").classList.add("hide");
+  }, 1200);
+});
+const heroEl = document.getElementById("hero");
+if (heroEl) {
+  heroEl.addEventListener("mousemove", (e) => {
+    const rect = heroEl.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100 + "%";
+    const y = ((e.clientY - rect.top) / rect.height) * 100 + "%";
+    heroEl.style.setProperty("--mx", x);
+    heroEl.style.setProperty("--my", y);
+  });
+}
 const nav = document.getElementById("nav");
 window.addEventListener("scroll", () => nav.classList.toggle("stuck", scrollY > 20), {passive:true});
 const obs = new IntersectionObserver(entries => {
